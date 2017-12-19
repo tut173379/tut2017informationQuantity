@@ -1,7 +1,8 @@
+//p bar
 package s4.b173379; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID. 
 import java.lang.*;
 import s4.specification.*;
-
+ 
 /*
 interface FrequencerInterface {     // This interface provides the design for frequency counter.
     void setTarget(byte[]  target); // set the data to search.
@@ -46,6 +47,7 @@ public class TestCase {
 	    System.out.println("Exception occurred: STOP");
 	}
 
+
 	try {
 	    InformationEstimatorInterface myObject;
 	    double value;
@@ -64,6 +66,39 @@ public class TestCase {
 	    myObject.setTarget("00".getBytes());
 	    value = myObject.estimation();
 	    System.out.println(">00 "+value);
+	}
+	catch(Exception e) {
+	    System.out.println("Exception occurred: STOP");
+	}
+	try {
+	    InformationEstimatorInterface myObject;
+	    double value;
+	    System.out.println("checking s4.b173379.InformationEstimator");
+	    myObject = new s4.b173379.InformationEstimator();
+	    myObject.setSpace("321032100123012301".getBytes());
+	    myObject.setTarget("03".getBytes());
+	    value = myObject.estimation();
+		System.out.println(">03 "+value);
+		myObject.setTarget("01".getBytes());
+	    value = myObject.estimation();
+	    System.out.println(">01 "+value);
+
+	}
+	catch(Exception e) {
+	    System.out.println("Exception occurred: STOP");
+	}
+     
+
+	try {
+	    FrequencerInterface  myObject;
+	    int freq;
+	    System.out.println("checking s4.b173379.Frequencer");
+	    myObject = new s4.b173379.Frequencer();
+	    myObject.setSpace("Hell heck ho hia".getBytes());
+	    myObject.setTarget("H".getBytes());
+	    freq = myObject.frequency();
+	    System.out.print("\"H\" in \"Hell heck ho hia h\" appears "+freq+" times. ");
+	    if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
