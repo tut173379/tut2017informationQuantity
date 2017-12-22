@@ -89,7 +89,8 @@ public class TestCase {
 	try {
 	    FrequencerInterface  myObject;
 	    int freq;
-	    System.out.println("\nchecking s4.b173379.Frequencer(When SPACE's length is zero)");
+	    //When the length of space is 0
+	    System.out.println("\nchecking s4.b173379.Frequencer");
 	    myObject = new s4.b173379.Frequencer();
 	    myObject.setSpace("".getBytes());
 	    myObject.setTarget("H".getBytes());
@@ -124,10 +125,14 @@ public class TestCase {
 	    myObject.setTarget("00".getBytes());
 	    value = myObject.estimation();
 	    System.out.println(">00 "+value);
-	    
+	    //when TARGET's length is zero
 	    myObject.setTarget("".getBytes());
 	    value = myObject.estimation();
-	    System.out.println("> "+value+"(when TARGET's length is zero)\n ");
+	    System.out.println(">  "+value);
+            
+            myObject.setTarget("88".getBytes());
+            value = myObject.estimation();
+            System.out.println("88> "+value);
 
 	    System.out.println("\nchecking s4.b173379.InformationEstimator(when SPACE's length is zero)");
 	    System.out.println("SPACE:  ");
@@ -135,11 +140,6 @@ public class TestCase {
 	    myObject.setTarget("00".getBytes());
 	    value = myObject.estimation();
 	    System.out.println(">00 "+value);
-	    
-	    System.out.println("\nchecking s4.b173379.InformationEstimator(when TARGET's length is zero)");
-	    System.out.println("SPACE:abcabccbacba");
-	    myObject.setSpace("abcabccbacba".getBytes());
-
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
