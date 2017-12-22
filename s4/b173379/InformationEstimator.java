@@ -4,6 +4,7 @@ import s4.specification.*;
 
 /* What is imported from s4.specification
 package s4.specification;
+
 public interface InformationEstimatorInterface{
     void setTarget(byte target[]); // set the data for computing the information quantities
     void setSpace(byte space[]); // set data for sample space to computer probability
@@ -37,16 +38,21 @@ public class InformationEstimator implements InformationEstimatorInterface{
     public void setTarget(byte [] target) { myTarget = target;}
     public void setSpace(byte []space) { 
 	myFrequencer = new Frequencer();
-	mySpace = space; myFrequencer.setSpace(space); 
+	mySpace = space; 
+	myFrequencer.setSpace(space); 
     }
 
     public double estimation(){
+	if(myTarget == null || myTarget.length == 0) return 0;
+	
 	boolean [] partition = new boolean[myTarget.length+1];
 	int np;
 	np = 1<<(myTarget.length-1);
 	// System.out.println("np="+np+" length="+myTarget.length);
 	double value = Double.MAX_VALUE; // value = mininimum of each "value1".
-
+	
+	if(mySpace == null || mySpace.length == 0) return value;
+	
 	for(int p=0; p<np; p++) { // There are 2^(n-1) kinds of partitions.
 	    // binary representation of p forms partition.
 	    // for partition {"ab" "cde" "fg"}
