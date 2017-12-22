@@ -25,6 +25,9 @@ public class Frequencer implements FrequencerInterface{
 	int targetLength = myTarget.length;
 	int spaceLength = mySpace.length;
 	int count = 0;
+	if(mySpace == null || mySpace.length==0) return -1; //
+	else if (myTarget== null || myTarget.length== 0) return 0; //
+
 	for(int start = 0; start<spaceLength; start++) { // Is it OK?
 	    boolean abort = false;
 	    for(int i = 0; i<targetLength; i++) {
@@ -54,8 +57,6 @@ public class Frequencer implements FrequencerInterface{
 	    if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
 	}
 	catch(Exception e) {
-	    System.out.println("Exception occurred: STOP");
-	}
-    }
+	    System.out.println("Exception occurred:     }
 }	    
 	    
