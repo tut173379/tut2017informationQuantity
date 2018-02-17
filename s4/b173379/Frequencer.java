@@ -14,8 +14,12 @@ public class Frequencer implements FrequencerInterface{
 	//print the variable
 	private void printSuffixArray() {
 		if(spaceReady) {
+			int count=0;
 			for(int i=0; i< mySpace.length; i++) {
 				int s = suffixArray[i];
+				if(count<10) System.out.print("0");
+				System.out.print(count+":");
+				count++;
 				for(int j=s;j<mySpace.length;j++) {							
 					System.out.write(mySpace[j]); 		
 				}
@@ -23,6 +27,7 @@ public class Frequencer implements FrequencerInterface{
 			}
 		} 
 	}
+
 
 	private int suffixCompare(int i, int j) { //khao jai leo
 		// comparing two suffixes by dictionary order.
@@ -84,42 +89,19 @@ public class Frequencer implements FrequencerInterface{
 
 	public void setSpace(byte []space) {
 		mySpace = space; 
-		if(mySpace.length>0) spaceReady = true;
-		suffixArray = new int[space.length];
-		// put all suffixes in suffixArray. Each suffix is expressed by one interger. 
-		for(int i = 0; i< space.length; i++) {
-			suffixArray[i] = i; 
-		}
-		// Sorting is not implemented yet.
-		// sort 
-		quickSort(0, space.length-1);
-		// Your are required to sort the suffixArray, by suffixCompare. 
-		/* Example from "Hi Ho Hi Ho"
-			0: Hi Ho
-			1: Ho
-			2: Ho Hi Ho
-			3:Hi Ho
-			4:Hi Ho Hi Ho
-			5:Ho
-			6:Ho Hi Ho
-			7:i Ho
-			8:i Ho Hi Ho
-			9:o
-			A:o Hi Ho
-		*/
-		//
-		/* 改善前、bubblesortを使用した
-		int temp;
-		for(int i=0; i< mySpace.length; i++){
-			for(int j=0; j<mySpace.length-i-1; j++){
-				if(suffixCompare(j,j+1) > 0){ 
-					//swap
-					temp = suffixArray[j];
-					suffixArray[j] = suffixArray[j+1];
-					suffixArray[j+1]= temp;
+		if(mySpace != null){
+			if(mySpace.length>0){
+				spaceReady = true;
+				suffixArray = new int[space.length];
+				// put all suffixes in suffixArray. Each suffix is expressed by one interger. 
+				for(int i = 0; i< space.length; i++) {
+					suffixArray[i] = i; 
+				}
+				// sort 
+				quickSort(0, space.length-1);
 			}
 		}
-		}*/
+		
 		printSuffixArray();
 	}
 
@@ -143,14 +125,19 @@ public class Frequencer implements FrequencerInterface{
         int n = end-start;
 
         for(int k=0;k<n;k++) {
-            if(mySpace[s1+k]>myTarget[start+k]) return 1;
-            if(mySpace[s1+k]<myTarget[start+k]) return -1;
+        	if(s1+k <= mySpace.length-1){
+	            if(mySpace[s1+k]>myTarget[start+k]) return 1;
+	            if(mySpace[s1+k]<myTarget[start+k]) return -1;
+	        }
+	        else{ 
+	        	return -1;
+	    	}
         }
         return 0;
 	}
 
 	private int subByteStartIndex(int start, int end) {
-		// It returns the index of the first suffix which is equal or greater than subBytes; // not implemented yet;
+	// It returns the index of the first suffix which is equal or greater than subBytes; // not implemented yet;
 	// For "Ho", it will return 5 for "Hi Ho Hi Ho".
 	// For "Ho ", it will return 6 for "Hi Ho Hi Ho".
 
@@ -174,7 +161,7 @@ public class Frequencer implements FrequencerInterface{
 	}
 
 	private int subByteEndIndex(int start, int end) {
-// It returns the next index of the first suffix which is greater than subBytes; // not implemented yet
+	// It returns the next index of the first suffix which is greater than subBytes; // not implemented yet
 	    // For "Ho", it will return 7 for "Hi Ho Hi Ho".
 	    // For "Ho ", it will return 7 for "Hi Ho Hi Ho".
 
@@ -226,7 +213,7 @@ public class Frequencer implements FrequencerInterface{
 
 	public void setTarget(byte [] target){
 		myTarget = target; 
-		if(myTarget.length>0) 
+		if(myTarget.length>0 && myTarget != null) 
 			targetReady = true; 
 		}
 
@@ -234,30 +221,48 @@ public class Frequencer implements FrequencerInterface{
 		if(targetReady == false) return -1; 
 		if(spaceReady == false) return 0;
 		return subByteFrequency(0, myTarget.length);
-
 	}
 
-
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 
 		Frequencer frequencerObject; 
 		try {
+				System.out.println("Checking freqencer");
 				frequencerObject = new Frequencer();
-				frequencerObject.setSpace("Hi Ho Hi Ho".getBytes()); 
+				frequencerObject.setSpace("Hi Ho Hi Ho Hi Ho Hi Ho Hi Ho".getBytes()); 
 				//frequencerObject.setSpace("".getBytes()); 
 			
-			frequencerObject.setTarget("H".getBytes()); 
-			int result = frequencerObject.frequency(); 
+				frequencerObject.setTarget("Hi Ho".getBytes()); 
+				int result = frequencerObject.frequency(); 
 				System.out.print("Freq = "+ result+" ");
-			if(4 == result) { 
-				System.out.println("OK"); 
-			}
-			else {
-				System.out.println("WRONG"); 
-			} 
+				if(4 == result) { 
+					System.out.println("OK"); 
+				}
+				else {
+					System.out.println("WRONG"); 
+				} 
 		}
 		catch(Exception e) {
 		System.out.println("STOP"); 
-	}
+		}
 	} 
-}
+}*/
+
+public static void main(String[] args) {
+        Frequencer myObject;
+        int freq;
+        try {
+            System.out.println("\n\ncheck Frequencer");
+            myObject = new Frequencer();
+            myObject.setSpace("Hi Ho Hi".getBytes());
+	    
+            myObject.setTarget("Hi Ho".getBytes());
+            freq = myObject.frequency();
+            System.out.print("\"H\" in \"Hi Ho Hi Ho\" appears "+freq+" times. ");
+            if(4 == freq) { System.out.println("OK\n"); } else {System.out.println("WRONG\n"); }
+            }
+        catch(Exception e) {
+            System.out.println("Exception occurred: STOP");
+            }
+        }
+}	
