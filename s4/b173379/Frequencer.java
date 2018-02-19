@@ -14,12 +14,12 @@ public class Frequencer implements FrequencerInterface{
 	//print the variable
 	private void printSuffixArray() {
 		if(spaceReady) {
-			int count=0;
+			//int count=0;
 			for(int i=0; i< mySpace.length; i++) {
 				int s = suffixArray[i];
-				if(count<10) System.out.print("0");
-				System.out.print(count+":");
-				count++;
+				//if(count<10) System.out.print("0");
+				//System.out.print(count+":");
+				//count++;
 				for(int j=s;j<mySpace.length;j++) {							
 					System.out.write(mySpace[j]); 		
 				}
@@ -203,10 +203,10 @@ public class Frequencer implements FrequencerInterface{
 	int last1 = subByteEndIndex(start, end);
 
 	/* inspection code*/
-	for(int k=start;k<end;k++) { 
-		System.out.write(myTarget[k]); 
-	} 
-		System.out.printf(": first=%d last1=%d\n", first, last1);
+	//for(int k=start;k<end;k++) { 
+	//	System.out.write(myTarget[k]); 
+	//} 
+	//	System.out.printf(": first=%d last1=%d\n", first, last1);
  
 	return last1 - first;
 	}
@@ -248,21 +248,26 @@ public class Frequencer implements FrequencerInterface{
 	} 
 }*/
 
-public static void main(String[] args) {
-        Frequencer myObject;
-        int freq;
-        try {
-            System.out.println("\n\ncheck Frequencer");
-            myObject = new Frequencer();
-            myObject.setSpace("Hi Ho Hi".getBytes());
-	    
-            myObject.setTarget("Hi Ho".getBytes());
-            freq = myObject.frequency();
-            System.out.print("\"H\" in \"Hi Ho Hi Ho\" appears "+freq+" times. ");
-            if(4 == freq) { System.out.println("OK\n"); } else {System.out.println("WRONG\n"); }
-            }
-        catch(Exception e) {
-            System.out.println("Exception occurred: STOP");
-            }
-        }
-}	
+public static void main(String[] args) { 
+	Frequencer frequencerObject;
+	try {
+    
+	    frequencerObject = new Frequencer();
+	    frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
+	   
+	    frequencerObject.setTarget("H".getBytes());
+	    //frequencerObject.setTarget(null);
+	    int result = frequencerObject.frequency();
+	    System.out.print("Freq = "+ result+" ");
+	    if(4 == result) { 
+	    	System.out.println("OK"); 
+	    }
+	    else {System.out.println("WRONG"); 
+		}
+
+	}
+	catch(Exception e) {
+	    System.out.println("STOP"); }
+    } 
+}
+	
