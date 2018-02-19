@@ -102,7 +102,7 @@ public class Frequencer implements FrequencerInterface{
 			}
 		}
 		
-		printSuffixArray();
+		//printSuffixArray();
 	}
 
 	private int targetCompare(int i, int start, int end) {
