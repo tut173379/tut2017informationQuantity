@@ -276,7 +276,7 @@ public class Frequencer implements FrequencerInterface{
             System.out.println("checking Frequencer");
             myObject = new Frequencer();
             myObject.setSpace("Hi Ho Hi".getBytes());
-	    
+        
             myObject.setTarget("H".getBytes());
             freq = myObject.frequency();
             System.out.print("\"H\" in \"Hi Ho Hi Ho \" appears "+freq+" times. ");
@@ -286,4 +286,4 @@ public class Frequencer implements FrequencerInterface{
             System.out.println("Exception occurred: STOP");
             }
         }
-}	  
+}     
